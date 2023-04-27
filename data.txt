@@ -1,2 +1,3 @@
-www.websitename.domain|example@email.com|waesrdtfghjk
-www.websitename.domain|example@email.com|waetsrdtfyghbjnk245364
+www.websitename.domain|example@email.com|b'gAAAAABkScMpZp-nv5GEkMcmKOAoZf-AJhb80jxZm71gUbq1WqseH7U8ZRomxBWTMvV1ZiYXLqgwdOwdWC6UsnN_3mf0wNatxIapRZ0fystxGx9nlasdWzI='
+Zerodha|example@email.com|b'gAAAAABkScNCjp-ITRjs8OwJ9sbYZ7IMgi43ivu1V2t2nRHd__Olk00O_7RAf7AeI6_VLANZg2dJ8a2TwbxoerbZHyYjZHHS1Bxtfi4ipcuF_xybXNcUobA='
+Udemy|example@email.com|b'gAAAAABkScNiCIVMC7Az-uKekMsHFxjrWDH7AFvz8L00zmSsr3mZWqSjqUMxUgl6oMiS7EJ205kwZmYMdRZj7A3YUp2RYYMyhbw4vHL1pQ0utiyYqaVH0Hw='
