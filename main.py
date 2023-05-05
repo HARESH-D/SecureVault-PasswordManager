@@ -8,29 +8,26 @@ from cryptography.fernet import Fernet
 
 
 
-# def retrieve_password():
-#     window2 = Tk()
-#     window2.title("Password warehouse")
-#     window2.minsize(width=200, height=400)
-#     window2.config(padx=20, pady=50)
-#     w = Label(master=window2, text="Click the name of a Domain to copy its password ")
-#
-#     with open('data.txt', 'r') as f:
-#         passes = f.readlines()
-#
-#     k = 0
-#     var = IntVar()
-#     R = []
-#     for i in passes:
-#         domain = i.split('|')[0]
-#         passencrypt = ''.join(i.split('|')[2])
-#         print(passencrypt)
-#         R.append(Radiobutton(window2, text=domain, variable=var, value=k))
-#         R[k].pack(anchor=W)
-#         k += 1
-#     pyperclip.copy(fernet.decrypt(bytes(passencrypt, 'utf-8')))
-#     window2.mainloop()
+def retrieve_password():
+    with open('data.txt','r') as f:
+        information_list=[i.split('|') for i in f.readlines()]
+        print(information_list)
+        domain= [i[0] for i in information_list]
+        passes=[i[2] for i in information_list]
 
+    for i in domain:
+        if len(i)<=1:
+            domain.remove(i)
+
+    print(passes)
+    print(domain)
+    for i in domain:
+        if entry4.get()==i:
+            k=domain.index(i)
+            encrypted_data = passes
+            decrypted_data = fernet.decrypt(bytes(encrypted_data[k][2:-2],'utf-8'))
+            print(decrypted_data)
+            pyperclip.copy(str(decrypted_data)[2:-1])
 
 # read key and convert into byte
 with open('key.txt') as f:
@@ -87,20 +84,18 @@ def save():
             mypwdbyt = bytes(password, 'utf-8')
             encryptedPWD = fernet.encrypt(mypwdbyt)
             print(encryptedPWD)
-            file.write(f"{website}|{email}|{password}\n")
+            file.write(f"{website}|{email}|{encryptedPWD}\n")
             entry1.delete(0, 'end')
             entry3.delete(0, 'end')
 
-        with open('encrypted_password','wb') as encrypted_file:
+        with open('encrypted_password','ab') as encrypted_file:
             encrypted_file.write(encryptedPWD)
 
         # Decrypt the data
-        with open('encrypted_password', 'rb') as encrypted_file:
-            encrypted_data = encrypted_file.read()
-            decrypted_data = fernet.decrypt(encrypted_data)
 
-        with open('decrypted_data.txt', 'wb') as decrypted_file:
-            decrypted_file.write(decrypted_data)
+
+        # with open('decrypted_data.txt', 'wb') as decrypted_file:
+        #     decrypted_file.write(decrypted_data)
         
 
     else:
@@ -156,10 +151,9 @@ button2 = ttk.Button(text="Add",width=52,command=save)
 button2.grid(row=4, column=1,columnspan=2)
 
 # #Add button
-# button3 = ttk.Button(text="Retrieve password",width=52,command=retrieve_password)
-# button3.grid(row=5, column=1,columnspan=2)
-
-
+button3 = ttk.Button(text="Retrieve password",width=52,command=retrieve_password)
+button3.grid(row=5, column=1,columnspan=2)
+entry4 = Entry( window, width=52 )
+entry4.grid(row=6,column=1,columnspan=2)
+entry4.insert(0,"Enter the domain name here")
 window.mainloop()
-
-# ------------------------------------------------------ RETRIEVING PASSWORDS ------------------------------------------------#
